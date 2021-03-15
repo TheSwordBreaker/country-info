@@ -1,0 +1,10 @@
+.gallery-img {
+  max-width: 500px; /* whatever you want */
+
+  min-width: 50px; /* whatever you want */
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
