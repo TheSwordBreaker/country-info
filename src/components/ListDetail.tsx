@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { User } from '../interfaces';
 
 type ListDetailProps = {
