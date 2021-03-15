@@ -10,7 +10,7 @@ const ListDetail = ({ item: user }: ListDetailProps) => (
   <div>
     <h1>
       Detail for
-      {user.name}
+      {/* {user.name} */}
     </h1>
     <p>
       ID:

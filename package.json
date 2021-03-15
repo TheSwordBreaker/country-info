@@ -39,8 +39,8 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "eslint --fix",
-      "eslint ./src --ext .ts,.tsx --quiet --fix --ignore-path ./.gitignore"
+      "eslint --fix"
+      
     ]
   },
   "license": "MIT"
