@@ -8,3 +8,15 @@ export type User = {
   id: number;
   name: string;
 };
+
+export type Country = {
+  alpha2Code: string;
+  name: string;
+  area: number;
+  capital: String;
+  population: Number;
+};
+
+export type Countries = {
+  countries: Country[];
+};

@@ -1,18 +1,15 @@
 import * as React from 'react';
-import ListItem from './ListItem';
-import { User } from '../interfaces';
 
-type Props = {
-  items: User[];
-};
+import { Countries } from '../interfaces';
 
-const List = ({ items }: Props) => (
+const List = ({ countries = [] }: Countries) => (
+  // const List = () => (
   <ul>
-    {items.map((item) => (
-      <li key={item.id}>
-        <ListItem data={item} />
-      </li>
-    ))}
+    {/* {countries.map((country, id) => (
+      <li key={id}> {JSON.stringify(country)} </li>
+    ))} */}
+
+    {countries.length === 0 && <div>No Data</div>}
   </ul>
 );
 

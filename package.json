@@ -2,7 +2,7 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ./src --ext .ts,.tsx --quiet --fix --ignore-path ./.gitignore",

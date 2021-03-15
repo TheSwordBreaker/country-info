@@ -1,10 +1,35 @@
-.gallery-img {
-  max-width: 500px; /* whatever you want */
+:root {
+  --text-color: #174a63;
+  --text-secondary: #b3c5cd;
+  --primary-color: #21b6b7;
 
-  min-width: 50px; /* whatever you want */
+  --background-color: #f9f9f9;
+  --background-color-light: #eef3f6;
+  --background-color-dark: white;
+
+  --font-family: "Poppins", sans-serif;
+  --box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
 }
 
-img {
-  width: 100%;
-  height: auto;
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+
+
 }
+
+a {
+  color:inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  color:inherit;
+  font:inherit;
+}
+
