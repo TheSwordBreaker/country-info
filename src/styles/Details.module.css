@@ -1,0 +1,62 @@
+.overview_panel img {
+  width: 100%;
+}
+
+.overview_panel {
+  padding: 20px;
+  border-radius: 8px;
+  box-sizing: var(--box-shadow);
+  background-color: var(--background-color-light);
+}
+
+.overview_name {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 0;
+}
+
+.overview_region {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 4px;
+}
+
+.overview_numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  text-align: center;
+}
+
+.overview_label {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.details_panel {
+  background-color: var(--background-color-light);
+  box-shadow: var(--box-shadow);
+}
+
+.details_panel_heading {
+  padding: 20px;
+  padding-bottom: 0;
+  border-radius: 8px;
+}
+
+.details_panel_row {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 20px;
+  border-bottom: 1px soild #e0e0e0;
+}
+
+.details_panel_label {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.details_panel_value {
+}

@@ -13,8 +13,29 @@ export type Country = {
   alpha2Code: string;
   name: string;
   area: number;
-  capital: String;
-  population: Number;
+  capital: string;
+  population: number;
+  region: string;
+  subregion: string;
+};
+
+export type nameobj = {
+  name: string;
+};
+
+export type CountryDeatils = {
+  alpha2Code: string;
+  name: string;
+  area: number;
+  capital: string;
+  population: number;
+  region: string;
+  subregion: string;
+  flag: string;
+  languages: nameobj[];
+  currencies: nameobj[];
+  nativeName: string;
+  gini: number;
 };
 
 export type Countries = {

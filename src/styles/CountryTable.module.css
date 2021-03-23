@@ -1,0 +1,74 @@
+/* Country Tables - start */
+
+.heading {
+  display: flex;
+}
+
+.heading button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  cursor: pointer;
+  text-transform: capitalize;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading_name,
+.heading_population,
+.heading_area,
+.heading_capital {
+  flex: 1;
+  padding: 20px;
+  color: var(--text-secondary);
+}
+
+.row {
+  display: flex;
+  padding: 20px;
+
+  text-align: center;
+
+  background-color: var(--background-color-light);
+  border-radius: 8px;
+  margin-bottom: 16px;
+
+  box-shadow: var(--box-shadow);
+  font-weight: 500;
+
+  transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
+}
+
+.row:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.heading_name {
+  justify-content: flex-start;
+}
+
+.heading_arrow {
+  color: var(--primary-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 2px;
+}
+
+.name {
+  text-align: left;
+}
+
+.name,
+.population,
+.area,
+.capital {
+  flex: 1;
+}
+/* Country Tables - end */

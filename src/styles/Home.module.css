@@ -1,0 +1,27 @@
+/* SearchInput - Start */
+.inputWrapper {
+  display: flex;
+  align-items: center;
+
+  background-color: var(--background-color-light);
+  border-radius: 8px;
+  padding-left: 16px;
+}
+
+.input {
+  border: none;
+  background-color: transparent;
+  padding: 16px;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
+.counts {
+  color: var(--text-secondary);
+}
+/* SearchInput - End */

@@ -1,73 +1,60 @@
+import SearchRounded from '@material-ui/icons/SearchRounded';
 import { GetStaticProps } from 'next';
 import React, { useState } from 'react';
 
+import CountryTable from '../components/CountryTable';
 import Layout from '../components/Layout';
-import { Countries, Country } from '../interfaces';
-// import List from '../components/List';
+import { Countries } from '../interfaces';
+import styles from '../styles/Home.module.css';
 
-type Direaction = 'asc' | 'desc' | null;
+const SearchInput = ({ ...rest }) => (
+  <div className={styles.inputWrapper}>
+    <SearchRounded />
+    <input className={styles.input} {...rest} />
+  </div>
+);
 
 const Home = ({ countries }: Countries) => {
-  const [data, setData] = useState(countries);
-  const [dires, setDires] = useState<Direaction>(null);
-  const showOnly: number = 10;
+  console.log('do something');
 
-  const changedDireaction = (x: keyof Country, direaction?: Direaction) => {
-    if (direaction === 'asc') setData([...countries].sort((a: Country, b: Country) => (a[x] > b[x] ? -1 : 1)));
-    else if (direaction === 'desc') setData([...countries].sort((a: Country, b: Country) => (a[x] < b[x] ? -1 : 1)));
-    else setData(countries);
-  };
+  const [keyword, setKeyword] = useState<string>('');
+  const filterCountries = countries.filter(
+    (x) =>
+      x.name.toLowerCase().includes(keyword) ||
+      x.region.toLowerCase().includes(keyword) ||
+      x.subregion.toLowerCase().includes(keyword),
+  );
 
-  const orderBy = (x: keyof Country) => {
-    if (!dires) {
-      setDires('asc');
-      console.log('asc');
-      changedDireaction(x, 'asc');
-    } else if (dires === 'asc') {
-      setDires('desc');
-      console.log('desc');
-      changedDireaction(x, 'desc');
-    } else {
-      setDires(null);
-      console.log(null);
-      changedDireaction(x);
-    }
+  // console.log(filterCountries);
+  const onInputChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setKeyword(e.target.value.toLowerCase());
   };
 
   return (
     <Layout>
-      <div>
-        <button onClick={() => orderBy('name')}>
-          <div>Name</div>
-        </button>
-        <button onClick={() => orderBy('population')}>
-          <div>population</div>
-        </button>
-        <button onClick={() => orderBy('capital')}>
-          <div>capital</div>
-        </button>
-        <button onClick={() => orderBy('area')}>
-          <div>area</div>
-        </button>
-      </div>
-      {data.slice(0, showOnly).map((x, id) => (
-        <div key={id} style={{ display: 'flex' }}>
-          <div>{x.name}</div>
-          <div>{x.population}</div>
-          <div>{x.capital}</div>
-          <div>{x.area}</div>
-        </div>
-      ))}
+      <div className={styles.counts}>Found {countries.length} countries </div>
+
+      <SearchInput placeholder="Filter By Name, Region and SubRegion" value={keyword} onChange={onInputChanged} />
+
+      <CountryTable countries={filterCountries} />
     </Layout>
   );
 };
 
+console.log('do something');
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch('https://restcountries.eu/rest/v2/all');
+  // I was trying to get field with types key If you know that pls tell me
+  const FieldNeed = ['alpha2Code', 'population', 'name', 'area', 'capital', 'region', 'subregion'];
+
+  const url = `https://restcountries.eu/rest/v2/all?fields=${FieldNeed.join(';')} `;
+  const res = await fetch(url);
+  // const res = await fetch('https://restcountries.eu/rest/v2/all?fields=name;capital;population;area;alpha2Code');
   // console.log(res);
   const countries: Countries = await res.json();
   // console.log(countries);
-  // var countries = 'raj';
+
+  // var countries: Countries = { countries:s sampleCountryData };
   return {
     props: {
       countries,
