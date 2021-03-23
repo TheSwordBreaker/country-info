@@ -36,6 +36,7 @@ export type CountryDeatils = {
   currencies: nameobj[];
   nativeName: string;
   gini: number;
+  borders: string[];
 };
 
 export type Countries = {

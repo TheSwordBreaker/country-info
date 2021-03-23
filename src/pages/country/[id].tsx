@@ -1,4 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import React, { useEffect, useState } from 'react';
 
 import Layout from '../../components/Layout';
 import { CountryDeatils } from '../../interfaces';
@@ -9,10 +10,29 @@ type CountryDeatilsViewProps = {
   error?: string;
 };
 
+const getCountry = async (id: string | string[] | undefined) => {
+  const res = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
+  const country: CountryDeatils = await res.json();
+  return country;
+};
+
 const CountryDeatilsView = ({ country, error }: CountryDeatilsViewProps) => {
   if (error) {
     return <div>{error}</div>;
   }
+
+  const [border, setBorder] = useState<CountryDeatils[]>([]);
+
+  const getBorders = async () => {
+    const borders = country?.borders?.map(async (x: string) => await getCountry(x));
+    const border: CountryDeatils[] | undefined = await Promise.all(borders || []);
+
+    setBorder(border);
+  };
+  useEffect(() => {
+    getBorders();
+  }, []);
+
   return (
     <Layout title={country?.name}>
       <div>
@@ -61,6 +81,15 @@ const CountryDeatilsView = ({ country, error }: CountryDeatilsViewProps) => {
             <div className={styles.details_panel_label}> gini </div>
             <div className={styles.details_panel_value}>{country?.gini} </div>
           </div>
+
+          <div>
+            {border.map(({ name, flag }) => (
+              <div key={name}>
+                <img src={flag} alt={name} />
+                <div>{name}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </Layout>
@@ -71,8 +100,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
   //something
   try {
     const id = params?.id;
-    const res = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
-    const country: Country = await res.json();
+    const country: CountryDeatils = await getCountry(id);
+
     return {
       props: {
         country,
