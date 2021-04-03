@@ -24,4 +24,22 @@
 .counts {
   color: var(--text-secondary);
 }
+
+.inputBar {
+  margin-bottom: 40px;
+}
+
+@media screen and (min-width: 720px) {
+  .inputBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .counts {
+    flex: 1;
+  }
+  .inputWrapper {
+    flex: 4;
+  }
+}
 /* SearchInput - End */

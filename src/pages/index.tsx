@@ -33,9 +33,11 @@ const Home = ({ countries }: Countries) => {
 
   return (
     <Layout>
-      <div className={styles.counts}>Found {countries.length} countries </div>
+      <div className={styles.inputBar}>
+        <div className={styles.counts}>Found {countries.length} countries </div>
 
-      <SearchInput placeholder="Filter By Name, Region and SubRegion" value={keyword} onChange={onInputChanged} />
+        <SearchInput placeholder="Filter By Name, Region and SubRegion" value={keyword} onChange={onInputChanged} />
+      </div>
 
       <CountryTable countries={filterCountries} />
     </Layout>

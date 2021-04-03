@@ -104,7 +104,7 @@ const CountryTable = ({ countries = [] }: Countries) => {
         </SortArray>
 
         <SortArray
-          className={styles.heading_capital}
+          className={styles.heading_gini}
           onClick={() => orderBy('gini')}
           orderByKey={orderByKey}
           direaction={LastDireaction}

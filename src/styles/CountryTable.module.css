@@ -2,6 +2,7 @@
 
 .heading {
   display: flex;
+  padding: 20px;
 }
 
 .heading button {
@@ -19,14 +20,12 @@
 
 .heading_name,
 .heading_population,
+.heading_gini,
 .heading_area,
 .heading_capital {
   flex: 4;
-  padding: 20px;
+
   color: var(--text-secondary);
-}
-.heading_flag {
-  flex: 1;
 }
 
 .row {
@@ -65,7 +64,7 @@
 }
 
 .name {
-  text-align: left;
+  justify-content: flex-start;
 }
 
 .name,
@@ -74,9 +73,44 @@
 .gini,
 .capital {
   flex: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.heading_flag {
+  flex: 1;
+  margin-right: 16px;
+}
+
+.flag {
+  flex: 1;
+  margin-right: 16px;
+}
 .flag img {
+  border-radius: 2px;
+  border: 1px solid var(--text-secondary);
   width: 100%;
 }
 /* Country Tables - end */
+@media screen and (max-width: 720px) {
+  .heading_population,
+  .heading_area,
+  .heading_gini,
+  .population,
+  .area,
+  .gini {
+    display: none !important;
+  }
+
+  .heading_name,
+  .heading_capital,
+  .capital,
+  .name {
+    flex: 1;
+  }
+
+  /* .row {
+    max-height: 100px;
+  } */
+}
