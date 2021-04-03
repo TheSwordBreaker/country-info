@@ -1,7 +1,7 @@
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
 import KeyboardArrowUpRounded from '@material-ui/icons/KeyboardArrowUpRounded';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 
 import { Countries, Country } from '../interfaces';
 import styles from '../styles/CountryTable.module.css';
@@ -14,13 +14,14 @@ type SortArrayProps = {
   direaction: Direaction;
   myKey: keyof Country;
   orderByKey: keyof Country;
+  children?: ReactNode;
 };
 
-const SortArray = ({ className, onClick, direaction, myKey, orderByKey }: SortArrayProps) => {
+const SortArray = ({ children, className, onClick, direaction, myKey, orderByKey }: SortArrayProps) => {
   return (
     <>
       <button onClick={onClick} className={className}>
-        <div>{myKey}</div>
+        {children ?? <div>{myKey}</div>}
         {myKey == orderByKey && direaction ? (
           <div className={styles.heading_arrow}>
             {direaction != null && direaction === 'asc' ? <KeyboardArrowDownRounded /> : <KeyboardArrowUpRounded />}
@@ -66,6 +67,7 @@ const CountryTable = ({ countries = [] }: Countries) => {
   return (
     <div>
       <div className={styles.heading}>
+        <div className={styles.heading_flag}></div>
         <SortArray
           className={styles.heading_name}
           orderByKey={orderByKey}
@@ -95,16 +97,31 @@ const CountryTable = ({ countries = [] }: Countries) => {
           onClick={() => orderBy('area')}
           orderByKey={orderByKey}
           direaction={LastDireaction}
-          myKey="area"
+          myKey="area">
+          <div>
+            Area (km <sup style={{ fontSize: '0.5rem' }}> 2 </sup>)
+          </div>
+        </SortArray>
+
+        <SortArray
+          className={styles.heading_capital}
+          onClick={() => orderBy('gini')}
+          orderByKey={orderByKey}
+          direaction={LastDireaction}
+          myKey="gini"
         />
       </div>
       {orderedCountries.map((x, id) => (
         <Link key={id} href={`country/${x.alpha2Code}`}>
           <div className={styles.row}>
+            <div className={styles.flag}>
+              <img src={x?.flag} alt={x?.name} />
+            </div>
             <div className={styles.name}>{x.name}</div>
             <div className={styles.population}>{x.population}</div>
             <div className={styles.capital}>{x.capital}</div>
             <div className={styles.area}>{x?.area?.toLocaleString()}</div>
+            <div className={styles.area}>{x?.gini?.toLocaleString() || 0} </div>
           </div>
         </Link>
       ))}

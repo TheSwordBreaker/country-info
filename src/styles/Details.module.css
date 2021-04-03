@@ -57,3 +57,47 @@
   font-size: 14px;
   color: var(--text-secondary);
 }
+
+.details_panel_border {
+  padding: 20px;
+}
+
+.details_panel_border img {
+  width: 100%;
+  border: solid 1px var(--text-secondary);
+}
+
+.details_panel_border_label {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.details_panel_border_body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 24px;
+}
+
+.details_panel_border_country {
+  text-align: center;
+}
+
+@media screen and (min-width: 720px) {
+  .countainer {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .container_left {
+    grid-column: 1 / span 4;
+  }
+
+  .container_right {
+    grid-column: 5 / span 8;
+  }
+
+  .details_panel_heading {
+    margin-top: 0;
+  }
+}

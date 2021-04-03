@@ -45,7 +45,7 @@ const Home = ({ countries }: Countries) => {
 console.log('do something');
 export const getStaticProps: GetStaticProps = async () => {
   // I was trying to get field with types key If you know that pls tell me
-  const FieldNeed = ['alpha2Code', 'population', 'name', 'area', 'capital', 'region', 'subregion'];
+  const FieldNeed = ['gini', 'flag', 'alpha2Code', 'population', 'name', 'area', 'capital', 'region', 'subregion'];
 
   const url = `https://restcountries.eu/rest/v2/all?fields=${FieldNeed.join(';')} `;
   const res = await fetch(url);

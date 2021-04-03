@@ -17,6 +17,8 @@ export type Country = {
   population: number;
   region: string;
   subregion: string;
+  gini: number;
+  flag: string;
 };
 
 export type nameobj = {

@@ -21,9 +21,12 @@
 .heading_population,
 .heading_area,
 .heading_capital {
-  flex: 1;
+  flex: 4;
   padding: 20px;
   color: var(--text-secondary);
+}
+.heading_flag {
+  flex: 1;
 }
 
 .row {
@@ -68,7 +71,12 @@
 .name,
 .population,
 .area,
+.gini,
 .capital {
-  flex: 1;
+  flex: 4;
+}
+
+.flag img {
+  width: 100%;
 }
 /* Country Tables - end */
