@@ -51,12 +51,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const url = `https://restcountries.eu/rest/v2/all?fields=${FieldNeed.join(';')} `;
   const res = await fetch(url);
-  // const res = await fetch('https://restcountries.eu/rest/v2/all?fields=name;capital;population;area;alpha2Code');
-  // console.log(res);
   const countries: Countries = await res.json();
-  // console.log(countries);
 
-  // var countries: Countries = { countries:s sampleCountryData };
   return {
     props: {
       countries,
