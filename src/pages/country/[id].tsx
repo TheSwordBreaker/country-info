@@ -1,4 +1,5 @@
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import Layout from '../../components/Layout';
@@ -93,11 +94,13 @@ const CountryDeatilsView = ({ country, error }: CountryDeatilsViewProps) => {
             <div className={styles.details_panel_border}>
               <div className={styles.details_panel_border_label}>Neighbouring Countries</div>
               <div className={styles.details_panel_border_body}>
-                {border?.map(({ name, flag }) => (
-                  <div key={name} className={styles.details_panel_border_country}>
-                    <img src={flag} alt={name} />
-                    <div className={styles.details_panel_border_name}>{name}</div>
-                  </div>
+                {border?.map(({ name, flag, alpha2Code }) => (
+                  <Link key={name} href={`country/${alpha2Code}`}>
+                    <div key={name} className={styles.details_panel_border_country}>
+                      <img src={flag} alt={name} />
+                      <div className={styles.details_panel_border_name}>{name}</div>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -108,7 +111,7 @@ const CountryDeatilsView = ({ country, error }: CountryDeatilsViewProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsContext) => {
   //something
   try {
     const id = params?.id;
@@ -122,6 +125,18 @@ export const getServerSideProps: GetServerSideProps = async ({ params }: GetServ
   } catch (err) {
     return { props: { errors: err.message } };
   }
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await fetch('https://restcountries.eu/rest/v2/all?fields=alpha2Code');
+  const countryCode = await res.json();
+
+  const paths = countryCode.map((x: { alpha2Code: any }) => ({ params: { id: x.alpha2Code } }));
+
+  return {
+    paths,
+    fallback: false,
+  };
 };
 
 export default CountryDeatilsView;

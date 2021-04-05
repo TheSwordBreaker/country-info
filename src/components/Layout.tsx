@@ -28,6 +28,7 @@ const Layout = ({ children, title = 'World Ranks   ' }: Props) => {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') ?? 'light');
+    setTheme(localStorage.getItem('theme') || 'light');
   }, []);
   return (
     <div className={styles.container}>
