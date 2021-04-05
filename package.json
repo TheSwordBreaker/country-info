@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint ./src --ext .ts,.tsx --quiet --fix --ignore-path ./.gitignore",
-    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
+    "format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -29,14 +29,14 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "husky": "^6.0.0",
+    "husky": "4.3.8",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "typescript": "4.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo hi"
+      "pre-commit": "yarn format && yarn lint"
     }
   },
   "lint-staged": {
